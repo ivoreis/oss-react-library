@@ -1,0 +1,26 @@
+---
+name: SimpleComponent
+route: /components/component
+order: 1
+---
+
+import { Playground, Props } from 'docz';
+import { SimpleComponent } from '../src';
+
+# useHelloWorld
+
+```js
+import { SimpleComponent } from '<your-lib-name>';
+```
+
+```jsx
+const Example = () => {
+  return <SimpleComponent title={'Title'} />;
+};
+```
+
+Props
+
+<Props of={SimpleComponent} />
+
+<Playground>{() => <SimpleComponent title={'Title'} />}</Playground>

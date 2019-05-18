@@ -1,0 +1,206 @@
+{
+  "name": "--libraryname--",
+  "version": "0.0.0-semantically-released",
+  "license": "MIT",
+  "description": "OSS react library starter",
+  "author": "--fullname-- <--useremail-->",
+  "keywords": [
+    "starter",
+    "library",
+    "react",
+    "styled-components",
+    "semantic-release",
+    "typescript",
+    "jest",
+    "eslint",
+    "docz",
+    "pika",
+    "prettier"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/--username--/--libraryname--.git"
+  },
+  "bugs": {
+    "url": "https://github.com/--username--/--libraryname--/issues"
+  },
+  "scripts": {
+    "docz:dev": "docz dev",
+    "docz:build": "rm -rf docs && docz build",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "tsc": "tsc --noEmit",
+    "build": "pack build",
+    "publish": "pack publish",
+    "semantic-release": "semantic-release",
+    "deploy-docs": "node scripts/gh-pages-publish.js",
+    "bootstrap": "yarn && node scripts/bootstrap.js"
+  },
+  "dependencies": {
+    "styled-components": "^4.2.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
+    "@pika/pack": "^0.3.7",
+    "@pika/plugin-build-node": "^0.3.16",
+    "@pika/plugin-build-types": "^0.3.16",
+    "@pika/plugin-build-web": "^0.3.16",
+    "@pika/plugin-standard-pkg": "^0.3.16",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/github": "^5.2.10",
+    "@semantic-release/npm": "^5.1.8",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "@types/jest": "^24.0.13",
+    "@types/react": "^16.8.17",
+    "@types/styled-components": "^4.1.15",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "husky": "^2.3.0",
+    "jest": "^24.8.0",
+    "jest-dom": "^3.2.2",
+    "jest-styled-components": "^7.0.0-2",
+    "prettier": "^1.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hooks-testing-library": "^0.5.0",
+    "react-hot-loader": "^4.8.6",
+    "react-test-renderer": "^16.8.6",
+    "react-testing-library": "^7.0.0",
+    "semantic-release": "^15.13.14",
+    "typescript": "^3.4.5",
+    "shelljs": "^0.8.3",
+    "enquirer": "^2.3.0",
+    "chalk": "^2.4.2",
+    "replace-in-file": "^4.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-typescript",
+      "@babel/preset-react"
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./jestSetup.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/pkg"
+    ]
+  },
+  "prettier": {
+    "semi": true,
+    "useTabs": false,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 120,
+    "tabWidth": 2
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-standard-pkg",
+        {
+          "exclude": [
+            "__tests__/**"
+          ]
+        }
+      ],
+      [
+        "@pika/plugin-build-node",
+        {
+          "minNodeVersion": "8"
+        }
+      ],
+      [
+        "@pika/plugin-build-web"
+      ],
+      [
+        "@pika/plugin-build-types"
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {},
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  },
+  "eslintIgnore": [
+    "scripts/*"
+  ],
+  "release": {
+    "branch": "master",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "./pkg"
+        }
+      ],
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

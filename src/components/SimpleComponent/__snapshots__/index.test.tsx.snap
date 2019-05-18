@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it works 1`] = `
+.c0 {
+  background: #353644;
+  color: #1edc8c;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 25px;
+}
+
+<div
+  class="c0"
+>
+  My title
+</div>
+`;

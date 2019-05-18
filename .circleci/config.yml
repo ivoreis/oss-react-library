@@ -1,0 +1,77 @@
+---
+version: 2
+jobs:
+  install:
+    docker: &ref_0
+      - image: 'circleci/node:11'
+    steps:
+      - checkout
+      - run:
+          name: install
+          command: yarn
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules/**
+  build:
+    docker: *ref_0
+    steps:
+      - checkout
+      - &ref_1
+        attach_workspace:
+          at: .
+      - run:
+          name: build
+          command: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./**
+  test:
+    docker: *ref_0
+    steps:
+      - checkout
+      - *ref_1
+      - run:
+          name: test
+          command: yarn test
+  docs:
+    docker: *ref_0
+    steps:
+      - checkout
+      - *ref_1
+      - run:
+          name: docs
+          command: yarn deploy-docs
+  release:
+    docker: *ref_0
+    steps:
+      - checkout
+      - *ref_1
+      - run:
+          name: release
+          command: yarn semantic-release
+workflows:
+  version: 2
+  main:
+    jobs:
+      - install:
+          context: gh-npm-public
+      - build:
+          context: gh-npm-public
+          requires:
+            - install
+      - test:
+          context: gh-npm-public
+          requires:
+            - install
+      - docs:
+          context: gh-npm-public
+          requires:
+            - install
+      - release:
+          context: gh-npm-public
+          requires:
+            - build
+            - test
+            - docs
