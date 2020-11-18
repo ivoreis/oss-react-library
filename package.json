@@ -82,7 +82,7 @@
     "react-hot-loader": "^4.8.6",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^7.0.0",
-    "semantic-release": "^15.13.14",
+    "semantic-release": "^17.2.3",
     "typescript": "^3.4.5",
     "shelljs": "^0.8.3",
     "enquirer": "^2.3.0",
